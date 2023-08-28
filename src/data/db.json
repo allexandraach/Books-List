@@ -1,0 +1,124 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "Crime and Punishment",
+      "author": "Fyodor Dostoevsky",
+      "genre": "Fiction",
+      "isFavourite": true,
+      "currentlyReading": false
+    },
+    {
+      "id": 2,
+      "title": "Sapiens: A Brief History of Humankind",
+      "author": "Yuval Noah Harari",
+      "genre": "Non-fiction",
+      "isFavourite": true,
+      "currentlyReading": false
+    },
+    {
+      "id": 3,
+      "title": "Notes from Underground",
+      "author": "Fyodor Dostoevsky",
+      "genre": "Fiction",
+      "isFavourite": false,
+      "currentlyReading": true
+    },
+    {
+      "id": 4,
+      "title": "The Shallows: What the Internet Is Doing to Our Brains",
+      "author": "Nicholas Caar",
+      "genre": "Non-fiction",
+      "isFavourite": false,
+      "currentlyReading": true
+    },
+    {
+      "id": 5,
+      "title": "Homo Deus: A Brief History of Tomorrow",
+      "author": "Yuval Noah Harari",
+      "genre": "Non-fiction",
+      "isFavourite": false,
+      "currentlyReading": false
+    },
+    {
+      "id": 6,
+      "title": "The God Equation: The Quest for a Theory of Everything",
+      "author": "Michio Kaku",
+      "genre": "Non-fiction",
+      "isFavourite": true,
+      "currentlyReading": false
+    },
+    {
+      "id": 7,
+      "title": "The Count of Monte Cristo",
+      "author": "Alexandre Dumas",
+      "genre": "Fiction",
+      "isFavourite": false,
+      "currentlyReading": false
+    },
+    {
+      "id": 8,
+      "title": "Madame Bovary",
+      "author": "Gustave Flaubert",
+      "genre": "Fiction",
+      "isFavourite": true,
+      "currentlyReading": false
+    },
+    {
+      "id": 9,
+      "title": "Physics of the Impossible",
+      "author": "Michio Kaku",
+      "genre": "Non-fiction",
+      "isFavourite": false,
+      "currentlyReading": true
+    },
+    {
+      "id": 10,
+      "title": "The Karamazov Brothers",
+      "author": "Fyodor Dostoevsky",
+      "genre": "Fiction",
+      "isFavourite": true,
+      "currentlyReading": false
+    },
+    {
+      "title": "test",
+      "author": "test",
+      "genre": "test",
+      "isFavourite": "",
+      "currentlyReading": "",
+      "id": 11
+    },
+    {
+      "title": "test",
+      "author": "test",
+      "genre": "test",
+      "isFavourite": true,
+      "currentlyReading": "",
+      "id": 12
+    },
+    {
+      "title": "test",
+      "author": "test",
+      "genre": "test",
+      "isFavourite": true,
+      "currentlyReading": "",
+      "id": 13
+    },
+    {
+      "title": "test",
+      "author": "test",
+      "genre": "sfdds",
+      "isFavourite": true,
+      "currentlyReading": "",
+      "id": 14
+    },
+    {
+      "title": "ae",
+      "author": "erwrw",
+      "genre": "ewrwe",
+      "isFavourite": false,
+      "currentlyReading": "",
+      "id": 15
+    }
+  ]
+}
