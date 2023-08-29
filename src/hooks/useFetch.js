@@ -1,38 +1,35 @@
-import { useState, useEffect } from 'react';
+
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export const useFetch = (apiEndpoint) => {
 
     const [data, setData] = useState(null);
     const [originalData, setOriginalData] = useState([]);
     const [error, setError] = useState(null);
-    const [reRender, setReRender] = useState(false);
 
-    useEffect(() => {
-        fetch(apiEndpoint)
-            .then(response => {
-                if (!response.ok) { // error coming back from server
-                    throw Error('Server data could not be loaded');
-                }
-                return response.json();
-            })
-            .then(data => {
-                setData(data);
-                setOriginalData(data);
-                setError(null);
-            })
-            .catch(error => {
-                // connection error
-                setError(error.message);
-                alert(error);
-            })
-    }, [reRender])
+   useEffect(() => {
+    axios.get(apiEndpoint)
+        .then(response => {
+            if (response.status !== 200) { 
+                throw Error('Server data could not be loaded');
+            } else { return response.data };
+        })
+        .then(data => {
+            setData(data);
+            setOriginalData(data);
+            setError(null);
+        })
+        .catch(error => {
+            setError(error.message);
+            alert(error);
+        });
+    }, [])
 
     return {
         data,
         setData,
         originalData,
-        setOriginalData,
-        reRender,
-        setReRender
+        setOriginalData
     };
 }

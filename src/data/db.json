@@ -13,7 +13,7 @@
       "title": "Sapiens: A Brief History of Humankind",
       "author": "Yuval Noah Harari",
       "genre": "Non-fiction",
-      "isFavourite": true,
+      "isFavourite": false,
       "currentlyReading": false
     },
     {
@@ -46,7 +46,7 @@
       "author": "Michio Kaku",
       "genre": "Non-fiction",
       "isFavourite": true,
-      "currentlyReading": false
+      "currentlyReading": true
     },
     {
       "id": 7,
@@ -54,7 +54,7 @@
       "author": "Alexandre Dumas",
       "genre": "Fiction",
       "isFavourite": false,
-      "currentlyReading": false
+      "currentlyReading": true
     },
     {
       "id": 8,
@@ -79,46 +79,6 @@
       "genre": "Fiction",
       "isFavourite": true,
       "currentlyReading": false
-    },
-    {
-      "title": "test",
-      "author": "test",
-      "genre": "test",
-      "isFavourite": "",
-      "currentlyReading": "",
-      "id": 11
-    },
-    {
-      "title": "test",
-      "author": "test",
-      "genre": "test",
-      "isFavourite": true,
-      "currentlyReading": "",
-      "id": 12
-    },
-    {
-      "title": "test",
-      "author": "test",
-      "genre": "test",
-      "isFavourite": true,
-      "currentlyReading": "",
-      "id": 13
-    },
-    {
-      "title": "test",
-      "author": "test",
-      "genre": "sfdds",
-      "isFavourite": true,
-      "currentlyReading": "",
-      "id": 14
-    },
-    {
-      "title": "ae",
-      "author": "erwrw",
-      "genre": "ewrwe",
-      "isFavourite": false,
-      "currentlyReading": "",
-      "id": 15
     }
   ]
 }

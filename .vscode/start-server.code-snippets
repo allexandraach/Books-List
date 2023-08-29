@@ -1,0 +1,10 @@
+{
+	"Start JSON Server": {
+	  "prefix": "start-json-server",
+	  "body": [
+		"json-server --watch src/data/db.json --port 8000"
+	  ],
+	  "description": "start-json-server"
+	}
+  }
+  

@@ -1,6 +1,6 @@
 
 
-export function SearchBar({ searchBooks, setSearchBooks, handleFilterChange, handleSortChange }) {
+export function SearchBar({ searchBooks, setSearchBooks, filterBooks, sortBooks }) {
 
   return <form id="searchBarForm">
 
@@ -14,8 +14,8 @@ export function SearchBar({ searchBooks, setSearchBooks, handleFilterChange, han
       <div>
         Filter by:
         <label htmlFor="filterBooks">
-          <select name="filterBooks" onChange={handleFilterChange} >
-            <option value="" disabled hidden> </option>
+          <select name="filterBooks" value="default" onChange={(e) => {filterBooks(e.target.value)}} >
+            <option value="default" disabled hidden> </option>
               <option value="currentlyReading"> currently reading</option>
               <option value="favourite"> favourite</option>
           </select>
@@ -25,8 +25,8 @@ export function SearchBar({ searchBooks, setSearchBooks, handleFilterChange, han
       <div>
         Sort by:
         <label htmlFor="sortBooks">
-          <select name="sortBooks" onChange={handleSortChange} >
-            <option value="" disabled hidden> </option>
+          <select name="sortBooks" value="default" onChange={(e) => {sortBooks(e.target.value)}} >
+            <option value="default" disabled hidden> </option>
               <option value="author"> author</option>
               <option value="genre"> genre</option>
           </select>
