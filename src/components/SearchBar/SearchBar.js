@@ -1,11 +1,11 @@
 
 
-export function SearchBar({ searchBooks, setSearchBooks, filterBooks, sortBooks }) {
+export function SearchBar({ searchBooks, search, filterBooks, sortBooks }) {
 
   return <form id="searchBarForm">
 
     <input type="text" value={searchBooks} placeholder="Search books" 
-    onChange = {(e) => setSearchBooks(e.target.value)} />
+    onChange = {(e) =>  { search(e.target.value)}} />
 
     <br />
 

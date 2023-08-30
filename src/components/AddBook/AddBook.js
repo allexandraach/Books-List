@@ -8,7 +8,7 @@ export const AddBook = () => {
   const title = useRef('');
   const author = useRef('');
   const genre = useRef('');
-  const [isFavourite, setFavourite] = useState('');
+  const [favourite, setFavourite] = useState('');
   const [currentlyReading, setCurrentlyReading] = useState('');
   const postData = usePost();
 
@@ -19,7 +19,7 @@ export const AddBook = () => {
       title: title.current.value, 
       author: author.current.value, 
       genre: genre.current.value,
-      isFavourite, 
+      favourite, 
       currentlyReading
     };
     console.log(book);
@@ -54,7 +54,7 @@ export const AddBook = () => {
       </label>
 
       <label htmlFor="favourite">
-        {" "} Favourite?  {" "} <input value={isFavourite} 
+        {" "} Favourite?  {" "} <input value={favourite} 
         onChange={(e) => e.target.checked ? setFavourite(true) : setFavourite(false)} 
       type="checkbox" name="favourite" id="favourite" /></label>
 
