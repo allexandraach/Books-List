@@ -3,8 +3,8 @@ import { useState } from 'react';
 export function Book({ element, handleDelete, handleUpdate }) {
 
   // checkboxes
-  const [favourite, setFavourite] = useState('');
-  const [currentlyReading, setCurrentlyReading] = useState('');
+  const [favourite, setFavourite] = useState(false);
+  const [currentlyReading, setCurrentlyReading] = useState(false);
 
   return (
     <>
@@ -38,7 +38,7 @@ export function Book({ element, handleDelete, handleUpdate }) {
         </span>
 
         <button className="deleteBookBtn" key={`delete-${element.id}`}
-          onClick={() => { handleDelete(element.id) }}>Delete</button>
+          onClick={() => { handleDelete(element._id) }}>Delete</button>
 
         <hr />
       </li>

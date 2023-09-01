@@ -7,7 +7,7 @@ export const usePost = () => {
 
   const postData = async (book) => {
     try {
-      const response = await axios.post("http://localhost:8000/books",  book );
+      const response = await axios.post("http://localhost:8080/api/add",  book );
       
       if (response.status === 201) { 
         alert("You added a new book!");

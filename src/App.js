@@ -6,7 +6,6 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { AddBook } from "./components/AddBook/AddBook";
 import { BooksList } from "./components/BooksList/BooksList";
 
-
 export default function App() {
   return (<Router>
     <Navbar />

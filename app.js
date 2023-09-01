@@ -1,13 +1,19 @@
 const express = require('express');
+require('dotenv').config();
 
 const app = express();
 const mongoose = require('mongoose');
+
+const cors = require('cors');
+app.use(cors());
+
 const path = require('path');
 const PORT = process.env.PORT || 8080;
 const Book = require('./models/book');
+const booksRoutes = require('./routes/booksRoutes');
 
 // connect to mongodb
-const dbURI = 'mongodb+srv://achimov-alexandra:kayaPapaya@cluster0.jynieiw.mongodb.net/?retryWrites=true&w=majority';
+const dbURI = process.env.DB_URI;
 mongoose.connect(dbURI)
     .then((result) => app.listen(PORT))
     .catch((err) => console.log(err));
@@ -15,8 +21,7 @@ mongoose.connect(dbURI)
 // Serve static files from the 'build' directory
 app.use(express.static(path.join(__dirname, 'build')));
 
-// register view engine; default: looks in views folder
-// app.set('view engine', 'ejs');
+app.use(express.json());
 
 app.get('/', (req, res) => {
 
@@ -27,6 +32,20 @@ app.get('/', (req, res) => {
 
     res.sendFile('./build/index.html', { root: __dirname });
 });
+
+// books routes
+app.use('/api/books', booksRoutes);
+
+app.post('/api/add', async (req, res) => {
+    const book = new Book(req.body);
+    book.save()
+        .then((data) => {
+            res.status(201).json('Book successfully added');
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+})
 
 
 // app.get('/add-book', (req, res) => {

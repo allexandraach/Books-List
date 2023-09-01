@@ -8,8 +8,8 @@ export const AddBook = () => {
   const title = useRef('');
   const author = useRef('');
   const genre = useRef('');
-  const [favourite, setFavourite] = useState('');
-  const [currentlyReading, setCurrentlyReading] = useState('');
+  const [favourite, setFavourite] = useState(false);
+  const [currentlyReading, setCurrentlyReading] = useState(false);
   const postData = usePost();
 
   const handleSubmit = (e) => {
@@ -19,7 +19,7 @@ export const AddBook = () => {
       title: title.current.value, 
       author: author.current.value, 
       genre: genre.current.value,
-      favourite, 
+      favourite,
       currentlyReading
     };
     console.log(book);
