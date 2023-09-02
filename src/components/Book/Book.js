@@ -23,7 +23,7 @@ export function Book({ element, handleDelete, handleUpdate }) {
             key={`currentlyReading-${element.id}`} value={currentlyReading}
             onChange={(e) => {
               const newValue = e.target.checked;
-              handleUpdate(element.id, { ...element, currentlyReading: newValue })
+              handleUpdate(element._id, { ...element, currentlyReading: newValue })
             }}
             checked={element.currentlyReading === true ? "checked" : ""} />
 
@@ -31,7 +31,7 @@ export function Book({ element, handleDelete, handleUpdate }) {
             value={favourite}
             onChange={(e) => {
               const newValue = e.target.checked;
-              handleUpdate(element.id, { ...element, favourite: newValue })
+              handleUpdate(element._id, { ...element, favourite: newValue })
             }}
             checked={element.favourite === true ? "checked" : ""} />
 

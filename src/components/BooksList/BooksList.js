@@ -37,7 +37,7 @@ export function BooksList() {
 
   function handleUpdate(id, updatedProperty) {
 
-    axios.put(`http://localhost:8000/books/${id}`, updatedProperty, {
+    axios.put(`http://localhost:8080/api/books/${id}`, updatedProperty, {
       headers: {
         'Content-Type': 'application/json',
       }
@@ -54,7 +54,7 @@ export function BooksList() {
 
   function search(text) {
 
-    setSearchBooks(text.toLowerCase);
+    setSearchBooks(text.toLowerCase());
 
     const searchResults = [...originalBooks].filter((book) => {
       return (book.title.toLowerCase().includes(text) ||
@@ -67,33 +67,57 @@ export function BooksList() {
 
   }
 
-
   function filterBooks(category) {
 
-    const filteredBooks = [...originalBooks].filter((book) => book[category] === true);
-
-    setBooks(filteredBooks);
-
+    axios.get(`http://localhost:8080/api/books/filter?${category}=true`)
+      .then(response => {
+        console.log(response.data);
+        setBooks(response.data);
+      })
+      .catch(error => {
+        alert(error);
+      });
   }
 
   function sortBooks(category) {
 
-    const sortedBooks = [...originalBooks].sort((a, b) => {
+    axios.get(`http://localhost:8080/api/books/sort?sort=${category}`)
+      .then(response => {
+        console.log(response.data);
+        setBooks(response.data);
+      })
+      .catch(error => {
+        alert(error);
+      });
+  }
 
-      if (a[category] === b[category]) return -1;
 
-      // book a comes after book b
-      if (a[category] > b[category]) return 1;
+  // function filterBooks(category) {
 
-      // book a should come before book b
-      if (a[category] < b[category]) return -1;
+  //   const filteredBooks = [...originalBooks].filter((book) => book[category] === true);
 
-      return 0;
-    })
+  //   setBooks(filteredBooks);
 
-    setBooks(sortedBooks);
+  // }
 
-  };
+  // function sortBooks(category) {
+
+  //   const sortedBooks = [...originalBooks].sort((a, b) => {
+
+  //     if (a[category] === b[category]) return -1;
+
+  //     // book a comes after book b
+  //     if (a[category] > b[category]) return 1;
+
+  //     // book a should come before book b
+  //     if (a[category] < b[category]) return -1;
+
+  //     return 0;
+  //   })
+
+  //   setBooks(sortedBooks);
+
+  // };
 
 
   return (

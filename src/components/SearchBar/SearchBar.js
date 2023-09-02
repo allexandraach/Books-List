@@ -14,7 +14,7 @@ export function SearchBar({ searchBooks, search, filterBooks, sortBooks }) {
       <div>
         Filter by:
         <label htmlFor="filterBooks">
-          <select name="filterBooks" value="default" onChange={(e) => {filterBooks(e.target.value)}} >
+          <select name="filterBooks" value="default" onChange={(e) => {filterBooks( e.target.value )}} >
             <option value="default" disabled hidden> </option>
               <option value="currentlyReading"> currently reading</option>
               <option value="favourite"> favourite</option>
@@ -25,7 +25,7 @@ export function SearchBar({ searchBooks, search, filterBooks, sortBooks }) {
       <div>
         Sort by:
         <label htmlFor="sortBooks">
-          <select name="sortBooks" value="default" onChange={(e) => {sortBooks(e.target.value)}} >
+          <select name="sortBooks" value="default" onChange={(e) => {sortBooks( e.target.value )}} >
             <option value="default" disabled hidden> </option>
               <option value="author"> author</option>
               <option value="genre"> genre</option>
