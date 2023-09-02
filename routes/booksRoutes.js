@@ -8,7 +8,8 @@ const Book = require('../models/book');
 router.get('', async (req, res) => {
   try {
     const books = await Book.find(); // Fetch all books from the database
-    res.json(books);
+    res.status(200).json(books);
+
   } catch (error) {
     console.error('Error fetching books', error);
     res.status(500).json({ error: 'Failed to fetch books' });
@@ -22,9 +23,7 @@ router.get(`/sort`, async (req, res) => {
 
   try {
     const book = await Book.find().sort({ [category]: 1 });
-    // If the book is found, return it as a JSON response
-    res.json(book);
-    //   res.status(200).json("Books successfully sorted");
+    res.status(200).json(book);
 
   } catch (error) {
     console.error('Error sorting books:', error);
@@ -36,14 +35,10 @@ router.get(`/sort`, async (req, res) => {
 router.get('/filter', async (req, res) => {
 
   const category = req.query;
-  console.log(category);
 
   try {
     const book = await Book.find(category);
-    // If the book is found, return it as a JSON response
-    res.json(book);
-    //   res.status(200).json("Books successfully filtered");
-    console.log(book);
+    res.status(200).json(book);
 
   } catch (error) {
     console.error('Error filtering books:', error);
@@ -72,16 +67,16 @@ router.get('/:id', async (req, res) => {
 router.delete('/:id', (req, res) => {
   const id = req.params.id;
   Book.findByIdAndDelete(id)
-    .then((result) => res.status(200).json('Book deleted'))
+    .then((res) => res.status(200).json({ message: 'Book deleted' }))
     .catch(err => console.log(err));
 })
 
 
-router.put('/:id', (req, res)  => {
+router.put('/:id', (req, res) => {
   const id = req.params.id;
   Book.findByIdAndUpdate(id)
-  .then((result) => res.status(200).json('Book data updated'))
-  .catch(err => console.log(err));
+    .then((res) => res.status(200).json({ message: 'Book data updated' }))
+    .catch(err => console.log(err));
 
 })
 

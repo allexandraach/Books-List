@@ -15,7 +15,7 @@ const booksRoutes = require('./routes/booksRoutes');
 // connect to mongodb
 const dbURI = process.env.DB_URI;
 mongoose.connect(dbURI)
-    .then((result) => app.listen(PORT))
+    .then(() => app.listen(PORT))
     .catch((err) => console.log(err));
 
 // Serve static files from the 'build' directory
@@ -39,8 +39,8 @@ app.use('/api/books', booksRoutes);
 app.post('/api/add', async (req, res) => {
     const book = new Book(req.body);
     book.save()
-        .then((data) => {
-            res.status(201).json('Book successfully added');
+        .then((res) => {
+            res.status(201).json({ message: 'Book successfully added' });
         })
         .catch((err) => {
             console.log(err);
