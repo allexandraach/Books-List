@@ -46,39 +46,36 @@ router.get('/filter', async (req, res) => {
   }
 });
 
+router
+  .route('/:id')
+  .get(async (req, res) => {
+    const bookId = req.params.id;
+    try {
 
-router.get('/:id', async (req, res) => {
-  const bookId = req.params.id;
-  try {
-
-    const book = await Book.findById(bookId);
-    if (!book) {
-      return res.status(404).json({ error: 'Book not found' });
+      const book = await Book.findById(bookId);
+      if (!book) {
+        return res.status(404).json({ error: 'Book not found' });
+      }
+      // If the book is found, return it as a JSON response
+      res.json(book);
+    } catch (error) {
+      console.error('Error fetching book by ID:', error);
+      res.status(500).json({ error: 'Internal server error' });
     }
-    // If the book is found, return it as a JSON response
-    res.json(book);
-  } catch (error) {
-    console.error('Error fetching book by ID:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
+  })
+  .put((req, res) => {
+    const id = req.params.id;
+    Book.findByIdAndUpdate(id)
+      .then((res) => res.json({ message: 'Book data updated' }))
+      .catch(err => console.log(err));
 
-
-router.delete('/:id', (req, res) => {
-  const id = req.params.id;
-  Book.findByIdAndDelete(id)
-    .then((res) => res.json({ message: 'Book deleted' }))
-    .catch(err => console.log(err));
-})
-
-
-router.put('/:id', (req, res) => {
-  const id = req.params.id;
-  Book.findByIdAndUpdate(id)
-    .then((res) => res.json({ message: 'Book data updated' }))
-    .catch(err => console.log(err));
-
-})
+  })
+  .delete((req, res) => {
+    const id = req.params.id;
+    Book.findByIdAndDelete(id)
+      .then((res) => res.json({ message: 'Book deleted' }))
+      .catch(err => console.log(err));
+  })
 
 
 module.exports = router;

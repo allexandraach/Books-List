@@ -36,7 +36,7 @@ app.get('/', (req, res) => {
 // books routes
 app.use('/api/books', booksRoutes);
 
-app.post('/api/add', async (req, res) => {
+app.post('/api/add', (req, res) => {
     const book = new Book(req.body);
     book.save()
         .then((res) => {
@@ -45,6 +45,11 @@ app.post('/api/add', async (req, res) => {
         .catch((err) => {
             console.log(err);
         })
+})
+
+app.use((req, res) => {
+    
+    res.status(404).json({ Error: "Page not found" })
 })
 
 // app.get('/add-book', (req, res) => {

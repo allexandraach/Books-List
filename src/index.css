@@ -78,11 +78,6 @@ input:not([type="checkbox"]) {
   margin: 1.8rem;
 }
 
-/* not working */
-/* input[type="checkbox"] {
-  color:red;
-} */
-
 .book-entry div:first-child {
   text-align: start;
 }
@@ -135,4 +130,11 @@ input:not([type="checkbox"]) {
 select {
   padding: 0.4rem;
   margin: 0.4rem;
+}
+
+.notFound {
+  font-size: 2rem;
+  margin: 1rem;
+  padding: 1rem;
+
 }
