@@ -64,15 +64,17 @@ router
     }
   })
   .put((req, res) => {
-    const id = req.params.id;
-    Book.findByIdAndUpdate(id)
-      .then((res) => res.json({ message: 'Book data updated' }))
+    const bookId = req.params.id;
+    const updatedBook = req.body;
+    console.log(updatedBook);
+    Book.findByIdAndUpdate(bookId, updatedBook )
+      .then((result) => res.json(updatedBook))
       .catch(err => console.log(err));
 
   })
   .delete((req, res) => {
-    const id = req.params.id;
-    Book.findByIdAndDelete(id)
+    const bookId = req.params.id;
+    Book.findByIdAndDelete(bookId)
       .then((res) => res.json({ message: 'Book deleted' }))
       .catch(err => console.log(err));
   })

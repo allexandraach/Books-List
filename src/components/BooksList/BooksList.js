@@ -44,7 +44,6 @@ export function BooksList() {
     })
       .then(response => {
         console.log('Book status updated:', response.data);
-
       })
       .catch(error => {
         console.error('Error updating book:', error);
