@@ -6,17 +6,24 @@ export const usePost = () => {
   const navigate = useNavigate();
 
   const postData = async (book) => {
+
     try {
-      const response = await axios.post("http://localhost:8080/api/add",  book );
-      
-      if (response.status === 201) { 
+      const response = await axios.post("http://localhost:8080/api/add", book);
+
+      if (response.status === 201) {
         alert("You added a new book!");
         navigate('/');
-      } else {
-        throw new Error("Ooops. Request failed. Please try again later");
       }
     } catch (error) {
-      console.error("An error occurred while adding a new book:", error);
+
+      if (error.response.data.error === "MongoServerError") {
+        alert(`Oops! The book ${book.title} already exists in your list.`);
+      } else if (error.response.data.error == "ValidationError") {
+        alert('Please enter valid data');
+      }else {
+        console.error("An error occurred while adding a new book:", error);
+      }
+
     }
   };
 

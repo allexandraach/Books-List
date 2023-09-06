@@ -68,6 +68,8 @@ export function BooksList() {
 
   function filterBooks(category) {
 
+    updateUrl(category, true);
+
     axios.get(`http://localhost:8080/api/books/filter?${category}=true`)
       .then(response => {
         console.log(response.data);
@@ -80,6 +82,8 @@ export function BooksList() {
 
   function sortBooks(category) {
 
+    updateUrl("sort", category);
+
     axios.get(`http://localhost:8080/api/books/sort?sort=${category}`)
       .then(response => {
         console.log(response.data);
@@ -88,6 +92,14 @@ export function BooksList() {
       .catch(error => {
         alert(error);
       });
+  }
+
+  function updateUrl(key, value) {
+    const updatedUrl = new URLSearchParams
+      ({ [key]: value }).toString();
+
+    // Replace the current URL with the updated URL
+    window.history.replaceState(null, null, `books?${updatedUrl}`);
   }
 
 

@@ -67,15 +67,15 @@ router
     const bookId = req.params.id;
     const updatedBook = req.body;
     console.log(updatedBook);
-    Book.findByIdAndUpdate(bookId, updatedBook )
-      .then((result) => res.json(updatedBook))
+    Book.findByIdAndUpdate(bookId, updatedBook)
+      .then((result) => res.json({ message: 'Book data updated'}))
       .catch(err => console.log(err));
 
   })
   .delete((req, res) => {
     const bookId = req.params.id;
     Book.findByIdAndDelete(bookId)
-      .then((res) => res.json({ message: 'Book deleted' }))
+      .then((result) => res.json({ message: 'Book deleted' }))
       .catch(err => console.log(err));
   })
 

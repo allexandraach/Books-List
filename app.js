@@ -37,18 +37,29 @@ app.get('/', (req, res) => {
 app.use('/api/books', booksRoutes);
 
 app.post('/api/add', (req, res) => {
+    console.log(req.body);
+
     const book = new Book(req.body);
     book.save()
-        .then((res) => {
+        .then((result) => {
             res.status(201).json({ message: 'Book successfully added' });
         })
         .catch((err) => {
+
             console.log(err);
+
+            if (err.name == "MongoServerError") {
+                res.status(400).json({ error: "MongoServerError" });
+            } else if (err.name == "ValidationError") {
+                res.status(400).json({ error: "ValidationError" });
+            } else { res.status(500).json({ error: err }) }
+
         })
-})
+
+    });
 
 app.use((req, res) => {
-    
+
     res.status(404).json({ Error: "Page not found" })
 })
 

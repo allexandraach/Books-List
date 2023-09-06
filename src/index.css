@@ -108,7 +108,7 @@ input:not([type="checkbox"]) {
 .bookForm {
   width: max-content;
   margin: 3rem;
-  margin-left: 22%;
+  margin-left: 24%;
 }
 
 .deleteBookBtn {
