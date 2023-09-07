@@ -30,6 +30,6 @@ export const useFetch = (apiEndpoint) => {
         data,
         setData,
         originalData,
-        setOriginalData
+        setOriginalData,
     };
 }

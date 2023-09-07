@@ -54,7 +54,6 @@ a:hover {
 
 ol {
   margin-top: 2rem;
-  margin-bottom: 2rem;
 }
 
 #searchBarForm {
@@ -68,7 +67,7 @@ ol {
   align-items: center;
 }
 
-#booksDropdownWrapper div:nth-child(2){
+#booksDropdownWrapper div:nth-child(2) {
   margin-left: 1rem;
 }
 
@@ -125,6 +124,21 @@ input:not([type="checkbox"]) {
 .deleteBookBtn:hover {
   background-color: #471c1c;
   transition: background-color 0.3s;
+}
+
+#viewMoreBtn {
+  color: #471c1c;
+  font-size: 1rem;
+  padding: 0.4rem;
+  margin-bottom: 0.8rem;
+  background-color: white;
+  border: none;
+}
+
+#viewMoreBtn:hover {
+  cursor: pointer;
+  color: #a10872;
+  border-bottom: 1px solid #a10872;
 }
 
 select {

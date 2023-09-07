@@ -2,12 +2,16 @@ const express = require('express');
 
 const router = express.Router();
 
+const cors = require('cors');
+router.use(cors());
+
 const Book = require('../models/book');
 
 // bring book data from db
 router.get('', async (req, res) => {
+
   try {
-    const books = await Book.find(); // Fetch all books from the database
+    const books = await Book.find().limit(10);
     res.json(books);
 
   } catch (error) {
@@ -17,7 +21,7 @@ router.get('', async (req, res) => {
 });
 
 // sort books
-router.get(`/sort`, async (req, res) => {
+router.get('/sort', async (req, res) => {
 
   const category = req.query.sort;
 
@@ -45,6 +49,24 @@ router.get('/filter', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+router.get('/view', async (req, res) => {
+
+  console.log('triggered');
+
+  const pageNumber = req.query.page;
+  console.log(pageNumber);
+
+  try {
+    const books = await Book.find().skip((pageNumber - 1) * 10).limit(10); 
+    res.json(books);
+
+  } catch (error) {
+    console.error('Error displaying the next 10 books', error);
+    res.status(500).json({ error: 'Failed to display the next 10 books' });
+  }
+
+} )
 
 router
   .route('/:id')

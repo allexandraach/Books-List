@@ -2,9 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // custom validator function
-function checkDataValidity(value) {
-    const regexPattern =  /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~\d]/;
-    return !regexPattern.test(value);
+function checkDataValidity(data) {
+
+    const regexPattern = /[^A-Za-z\s.-]/;
+    return !regexPattern.test(data);
+
 }
 
 
@@ -18,17 +20,21 @@ const bookSchema = new Schema({
     author: {
         type: String,
         required: true,
+        minLength: 3,
+        maxLength: 70,
         validate: {
             validator: checkDataValidity,
-            message: 'Author contains unpermitted characters.'
+            message: 'Author data is not valid.'
         }
     },
     genre: {
         type: String,
         required: true,
+        minLength: 3,
+        maxLength: 50,
         validate: {
             validator: checkDataValidity,
-            message: 'Genre contains unpermitted characters.'
+            message: 'Genre data is not valid.'
         }
     },
     favourite: {

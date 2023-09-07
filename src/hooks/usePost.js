@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export const usePost = () => {
+
   const navigate = useNavigate();
 
   const postData = async (book) => {
@@ -18,9 +19,9 @@ export const usePost = () => {
 
       if (error.response.data.error === "MongoServerError") {
         alert(`Oops! The book ${book.title} already exists in your list.`);
-      } else if (error.response.data.error == "ValidationError") {
+      } else if (error.response.data.error === "ValidationError") {
         alert('Please enter valid data');
-      }else {
+      } else {
         console.error("An error occurred while adding a new book:", error);
       }
 

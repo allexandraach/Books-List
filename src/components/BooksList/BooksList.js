@@ -2,6 +2,7 @@ import axios from "axios";
 
 import { useFetch } from "../../hooks/useFetch";
 import { useState } from "react";
+import { useRef } from "react";
 
 import { SearchBar } from "../SearchBar/SearchBar";
 import { Book } from "../Book/Book";
@@ -10,8 +11,8 @@ import { Book } from "../Book/Book";
 export function BooksList() {
 
   const { data: books, setData: setBooks, originalData: originalBooks } = useFetch("http://localhost:8080/api/books");
-
   const [searchBooks, setSearchBooks] = useState("");
+  const pageNumberRef = useRef(2);
 
   function handleDelete(id) {
 
@@ -94,6 +95,25 @@ export function BooksList() {
       });
   }
 
+  function loadMoreBooks() {
+
+    const pageNumber = pageNumberRef.current;
+
+    fetch(`http://localhost:8080/api/books/view?page=${pageNumber}`)
+      .then((response) => response.json())
+      .then((data) => {
+        const moreBooks = books.concat(data);
+        setBooks(moreBooks);
+        console.log(moreBooks);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+
+    pageNumberRef.current = pageNumber + 1;
+
+  }
+
   function updateUrl(key, value) {
     const updatedUrl = new URLSearchParams
       ({ [key]: value }).toString();
@@ -101,34 +121,6 @@ export function BooksList() {
     // Replace the current URL with the updated URL
     window.history.replaceState(null, null, `books?${updatedUrl}`);
   }
-
-
-  // function filterBooks(category) {
-
-  //   const filteredBooks = [...originalBooks].filter((book) => book[category] === true);
-
-  //   setBooks(filteredBooks);
-
-  // }
-
-  // function sortBooks(category) {
-
-  //   const sortedBooks = [...originalBooks].sort((a, b) => {
-
-  //     if (a[category] === b[category]) return -1;
-
-  //     // book a comes after book b
-  //     if (a[category] > b[category]) return 1;
-
-  //     // book a should come before book b
-  //     if (a[category] < b[category]) return -1;
-
-  //     return 0;
-  //   })
-
-  //   setBooks(sortedBooks);
-
-  // };
 
 
   return (
@@ -141,6 +133,10 @@ export function BooksList() {
           />
         })}
       </ol>
+      <div style={{ display: 'flex', justifyContent: 'center' }}> <button id="viewMoreBtn"
+        onClick={loadMoreBooks}> View more
+      </button>
+      </div>
     </>
   )
 }
