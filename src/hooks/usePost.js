@@ -12,9 +12,9 @@ export const usePost = () => {
       const response = await axios.post("http://localhost:8080/api/add", book);
 
       if (response.status === 201) {
-        alert("You added a new book!");
         navigate('/');
       }
+
     } catch (error) {
 
       if (error.response.data.error === "MongoServerError") {

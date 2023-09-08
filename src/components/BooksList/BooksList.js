@@ -13,6 +13,8 @@ export function BooksList() {
   const { data: books, setData: setBooks, originalData: originalBooks } = useFetch("http://localhost:8080/api/books");
   const [searchBooks, setSearchBooks] = useState("");
   const pageNumberRef = useRef(2);
+  // disable viewMore Books Btn if filter, sort & search is active
+  const [disableBtn, setDisableBtn] = useState(false);
 
   function handleDelete(id) {
 
@@ -24,7 +26,6 @@ export function BooksList() {
         .then((response) => {
 
           if (response.status === 200) {
-            alert("Book successfully deleted");
             setBooks(prevBooks => prevBooks.filter(elem => elem._id !== id));
           }
 
@@ -54,6 +55,8 @@ export function BooksList() {
 
   function search(text) {
 
+    setDisableBtn(true);
+
     setSearchBooks(text.toLowerCase());
 
     const searchResults = [...originalBooks].filter((book) => {
@@ -67,7 +70,11 @@ export function BooksList() {
 
   }
 
+  // future improvement: implement 'clear filters' functionality 
+
   function filterBooks(category) {
+
+    setDisableBtn(true);
 
     updateUrl(category, true);
 
@@ -82,6 +89,8 @@ export function BooksList() {
   }
 
   function sortBooks(category) {
+
+    setDisableBtn(true);
 
     updateUrl("sort", category);
 
@@ -102,9 +111,15 @@ export function BooksList() {
     fetch(`http://localhost:8080/api/books/view?page=${pageNumber}`)
       .then((response) => response.json())
       .then((data) => {
-        const moreBooks = books.concat(data);
-        setBooks(moreBooks);
-        console.log(moreBooks);
+        if (data.length === 0) {
+          setDisableBtn(true);
+          alert('All the books are already displayed.');
+        } else {
+          const moreBooks = books.concat(data);
+          setBooks(moreBooks);
+          updateUrl("page", pageNumber);
+          console.log(moreBooks)
+        };
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -116,10 +131,12 @@ export function BooksList() {
 
   function updateUrl(key, value) {
     const updatedUrl = new URLSearchParams
+
       ({ [key]: value }).toString();
 
     // Replace the current URL with the updated URL
     window.history.replaceState(null, null, `books?${updatedUrl}`);
+
   }
 
 
@@ -129,12 +146,13 @@ export function BooksList() {
         filterBooks={filterBooks} sortBooks={sortBooks} />
       <ol>
         {books && books.map((element) => {
-          return <Book key={element._id} element={element} handleDelete={handleDelete} handleUpdate={handleUpdate}
+          return <Book key={element._id} element={element} handleDelete={handleDelete}
+            handleUpdate={handleUpdate} 
           />
         })}
       </ol>
       <div style={{ display: 'flex', justifyContent: 'center' }}> <button id="viewMoreBtn"
-        onClick={loadMoreBooks}> View more
+        onClick={loadMoreBooks} disabled={disableBtn}> View more
       </button>
       </div>
     </>

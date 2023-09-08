@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { usePost } from '../../hooks/usePost';
 
 export const AddBook = () => {
@@ -10,6 +10,7 @@ export const AddBook = () => {
   const genre = useRef('');
   const [favourite, setFavourite] = useState(false);
   const [currentlyReading, setCurrentlyReading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const postData = usePost();
 
   const handleSubmit = (e) => {
@@ -24,11 +25,12 @@ export const AddBook = () => {
     };
     console.log(book);
 
-    if (book.author === book.genre || book.title === book.genre ) {
+    if (book.author === book.genre || book.title === book.genre) {
       alert('You entered the same data in two fields.');
     } else {
+      setIsLoading(true);
       postData(book);
-    };
+    }
   }
 
   return <form className="bookForm" onSubmit={handleSubmit}>
@@ -65,7 +67,7 @@ export const AddBook = () => {
 
       <br />
 
-      <button id="addBookBtn" >Add book!</button>
+      <button id="addBookBtn" disabled={isLoading}> {isLoading ? "Adding..." : "Add book!"} </button>
 
     </ fieldset>
   </form>

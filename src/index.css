@@ -141,6 +141,16 @@ input:not([type="checkbox"]) {
   border-bottom: 1px solid #a10872;
 }
 
+#viewMoreBtn:disabled {
+  color: grey;
+}
+
+#viewMoreBtn:disabled:hover {
+  border-bottom: none;
+  color: grey;
+  cursor: auto;
+}
+
 select {
   padding: 0.4rem;
   margin: 0.4rem;

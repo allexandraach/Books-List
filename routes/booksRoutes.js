@@ -52,8 +52,6 @@ router.get('/filter', async (req, res) => {
 
 router.get('/view', async (req, res) => {
 
-  console.log('triggered');
-
   const pageNumber = req.query.page;
   console.log(pageNumber);
 

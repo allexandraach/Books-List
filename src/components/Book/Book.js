@@ -5,6 +5,15 @@ export function Book({ element, handleDelete, handleUpdate }) {
   // checkboxes
   const [favourite, setFavourite] = useState(false);
   const [currentlyReading, setCurrentlyReading] = useState(false);
+  //  show "Deleting" while the delete request is being processed;
+  const [isLoading, setIsLoading] = useState(false);
+
+
+  function processDeleteRequest(id) {
+
+    setIsLoading(true);
+    handleDelete(id);
+  }
 
   return (
     <>
@@ -38,11 +47,12 @@ export function Book({ element, handleDelete, handleUpdate }) {
         </span>
 
         <button className="deleteBookBtn" key={`delete-${element.id}`}
-          onClick={() => { handleDelete(element._id) }}>Delete</button>
+          onClick={() => { processDeleteRequest(element._id) }} disabled={isLoading}>
+          {isLoading ? "Deleting..." : "Delete"} </button>
 
         <hr />
       </li>
     </>
-    )
+  )
 
 };
