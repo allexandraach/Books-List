@@ -61,6 +61,18 @@ ol {
   justify-content: space-between;
 }
 
+#clearBtn {
+  font-weight: initial;
+  padding: 0.5rem;
+  margin-left: 2rem;
+}
+
+#clearBtn:hover {
+  border: solid black 1px;
+  color: black;
+  border-radius: 30%;
+}
+
 #booksDropdownWrapper {
   margin: 1.2rem;
   display: flex;
