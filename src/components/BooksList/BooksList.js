@@ -72,31 +72,16 @@ export function BooksList() {
 
   // future improvement: implement 'clear filters' functionality 
 
-  function filterBooks(category) {
+  function filterBooks(type, category) {
+
+    console.log(type);
 
     setDisableBtn(true);
 
-    updateUrl(category, true);
-
-    axios.get(`http://localhost:8080/api/books/filter?${category}=true`)
+    axios.get(`http://localhost:8080/api/books/${type}?${type}=${category}`)
       .then(response => {
         console.log(response.data);
-        setBooks(response.data);
-      })
-      .catch(error => {
-        alert(error);
-      });
-  }
-
-  function sortBooks(category) {
-
-    setDisableBtn(true);
-
-    updateUrl("sort", category);
-
-    axios.get(`http://localhost:8080/api/books/sort?sort=${category}`)
-      .then(response => {
-        console.log(response.data);
+        updateUrl(type, category);
         setBooks(response.data);
       })
       .catch(error => {
@@ -130,9 +115,7 @@ export function BooksList() {
   }
 
   function updateUrl(key, value) {
-    const updatedUrl = new URLSearchParams
-
-      ({ [key]: value }).toString();
+    const updatedUrl = new URLSearchParams({ [key]: value }).toString();
 
     // Replace the current URL with the updated URL
     window.history.replaceState(null, null, `books?${updatedUrl}`);
@@ -143,7 +126,7 @@ export function BooksList() {
   return (
     <>
       <SearchBar searchBooks={searchBooks} setSearchBooks={setSearchBooks} search={search}
-        filterBooks={filterBooks} sortBooks={sortBooks} />
+        filterBooks={filterBooks} />
       <ol>
         {books && books.map((element) => {
           return <Book key={element._id} element={element} handleDelete={handleDelete}

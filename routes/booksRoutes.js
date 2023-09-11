@@ -38,10 +38,10 @@ router.get('/sort', async (req, res) => {
 // filter books
 router.get('/filter', async (req, res) => {
 
-  const category = req.query;
+  const category = req.query.filter;
 
   try {
-    const book = await Book.find(category);
+    const book = await Book.find({[category] : true});
     res.json(book);
 
   } catch (error) {
@@ -64,15 +64,17 @@ router.get('/view', async (req, res) => {
     res.status(500).json({ error: 'Failed to display the next 10 books' });
   }
 
-} )
+})
 
 router
   .route('/:id')
   .get(async (req, res) => {
     const bookId = req.params.id;
+
     try {
 
-      const book = await Book.findById(bookId);
+      const book = await Book.findById(bookId).select("_id title author genre favourite currentlyReading");
+
       if (!book) {
         return res.status(404).json({ error: 'Book not found' });
       }
