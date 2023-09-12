@@ -1,6 +1,6 @@
 
 
-export function SearchBar({ searchBooks, search, filterBooks }) {
+export function SearchBar({ searchBooks, search, filterBooks, disableBtn }) {
 
   return <form id="searchBarForm">
 
@@ -34,7 +34,8 @@ export function SearchBar({ searchBooks, search, filterBooks }) {
       </div>
 
       <div>
-        <a id="clearBtn" href="/"> Clear </a>
+        <button id="clearBtn" href="/" disabled={!disableBtn} >
+          Clear </button>
       </div>
 
     </div>

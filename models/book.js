@@ -9,7 +9,6 @@ function checkDataValidity(data) {
 
 }
 
-
 // Schema = constructor function
 const bookSchema = new Schema({
     title: {
@@ -47,6 +46,9 @@ const bookSchema = new Schema({
     }
 
 }, { timestamps: true });
+
+// added the index directly in the db because otherwise it doesn't work
+// bookSchema.index({ title: 'text', author: 'text', genre: 'text' });
 
 const Book = mongoose.model('Book', bookSchema);
 module.exports = Book;

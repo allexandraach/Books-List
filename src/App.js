@@ -12,7 +12,7 @@ export default function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route exact path="/" index element={<BooksList />} />
+        <Route path="/" index element={<BooksList />} />
           <Route exact path="/add" element={<AddBook />} />
             <Route path="*" element={<NotFound404 />} />
             </Routes>

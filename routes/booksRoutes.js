@@ -20,6 +20,30 @@ router.get('', async (req, res) => {
   }
 });
 
+router.get('/search', async (req, res) => {
+
+  const query = req.query.q;
+
+  console.log(query);
+
+  try {
+
+    const results = await Book.find({
+      $text: { $search: query }
+    });
+
+    console.log(results);
+    res.json(results);
+
+  } catch (error) {
+
+    console.error(error);
+    res.status(500).json({ message: 'Server Error' });
+
+  }
+
+});
+
 // sort books
 router.get('/sort', async (req, res) => {
 
@@ -41,7 +65,7 @@ router.get('/filter', async (req, res) => {
   const category = req.query.filter;
 
   try {
-    const book = await Book.find({[category] : true});
+    const book = await Book.find({ [category]: true });
     res.json(book);
 
   } catch (error) {
@@ -56,7 +80,7 @@ router.get('/view', async (req, res) => {
   console.log(pageNumber);
 
   try {
-    const books = await Book.find().skip((pageNumber - 1) * 10).limit(10); 
+    const books = await Book.find().skip((pageNumber - 1) * 10).limit(10);
     res.json(books);
 
   } catch (error) {
@@ -90,7 +114,7 @@ router
     const updatedBook = req.body;
     console.log(updatedBook);
     Book.findByIdAndUpdate(bookId, updatedBook)
-      .then((result) => res.json({ message: 'Book data updated'}))
+      .then((result) => res.json({ message: 'Book data updated' }))
       .catch(err => console.log(err));
 
   })

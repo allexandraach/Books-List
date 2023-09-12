@@ -9,6 +9,7 @@ export const useFetch = (apiEndpoint) => {
     const [error, setError] = useState(null);
 
    useEffect(() => {
+
     axios.get(apiEndpoint)
         .then(response => {
             if (response.status !== 200) { 

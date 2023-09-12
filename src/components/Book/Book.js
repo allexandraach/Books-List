@@ -1,18 +1,16 @@
 import { useState } from 'react';
 
-export function Book({ element, handleDelete, handleUpdate }) {
+export function Book({ element, handleDelete, handleUpdate, isLoading }) {
 
   // checkboxes
   const [favourite, setFavourite] = useState(false);
   const [currentlyReading, setCurrentlyReading] = useState(false);
-  //  show "Deleting" while the delete request is being processed;
-  const [isLoading, setIsLoading] = useState(false);
-
 
   function processDeleteRequest(id) {
 
-    setIsLoading(true);
+    isLoading.current = true;
     handleDelete(id);
+
   }
 
   return (
@@ -34,7 +32,7 @@ export function Book({ element, handleDelete, handleUpdate }) {
               const newValue = e.target.checked;
               handleUpdate(element._id, { ...element, currentlyReading: newValue })
             }}
-            checked={element.currentlyReading === true ? "checked" : ""} />
+            checked={element.currentlyReading ? "checked" : ""} />
 
           Favourite? <input type="checkbox" name="favourite" key={`favourite-${element.id}`}
             value={favourite}
@@ -42,7 +40,7 @@ export function Book({ element, handleDelete, handleUpdate }) {
               const newValue = e.target.checked;
               handleUpdate(element._id, { ...element, favourite: newValue })
             }}
-            checked={element.favourite === true ? "checked" : ""} />
+            checked={element.favourite ? "checked" : ""} />
 
         </span>
 

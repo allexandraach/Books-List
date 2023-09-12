@@ -62,15 +62,16 @@ ol {
 }
 
 #clearBtn {
+  border: none;
   font-weight: initial;
   padding: 0.5rem;
   margin-left: 2rem;
+  cursor: pointer;
 }
 
 #clearBtn:hover {
-  border: solid black 1px;
-  color: black;
-  border-radius: 30%;
+  background-color: rgb(255, 255, 255);
+  transition: background-color 0.3s;
 }
 
 #booksDropdownWrapper {
@@ -153,12 +154,13 @@ input:not([type="checkbox"]) {
   border-bottom: 1px solid #a10872;
 }
 
-#viewMoreBtn:disabled {
+#viewMoreBtn:disabled, #clearBtn:disabled {
   color: grey;
 }
 
-#viewMoreBtn:disabled:hover {
-  border-bottom: none;
+#viewMoreBtn:disabled:hover, #clearBtn:disabled:hover {
+  transition: none;
+  border: none;
   color: grey;
   cursor: auto;
 }
