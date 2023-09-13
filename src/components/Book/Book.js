@@ -1,14 +1,18 @@
 import { useState } from 'react';
+import { useRef } from "react";
 
-export function Book({ element, handleDelete, handleUpdate, isLoading }) {
+export function Book({ element, handleDelete, handleUpdate }) {
 
   // checkboxes
-  const [favourite, setFavourite] = useState(false);
-  const [currentlyReading, setCurrentlyReading] = useState(false);
+  const favourite = useState(false);
+  const currentlyReading = useState(false);
+
+  const isDeleting = useRef(false);
 
   function processDeleteRequest(id) {
 
-    isLoading.current = true;
+    isDeleting.current = true;
+
     handleDelete(id);
 
   }
@@ -20,7 +24,7 @@ export function Book({ element, handleDelete, handleUpdate, isLoading }) {
         <div key={`bookData-${element.id}`} className="bookData" >
 
           <span style={{ fontSize: "large", fontWeight: "bold" }}>
-            {element.title}</span> <br /> {element.author}
+            <p>{element.title}</p> </span> <p>{element.author}</p>
 
         </div>
 
@@ -45,8 +49,8 @@ export function Book({ element, handleDelete, handleUpdate, isLoading }) {
         </span>
 
         <button className="deleteBookBtn" key={`delete-${element.id}`}
-          onClick={() => { processDeleteRequest(element._id) }} disabled={isLoading}>
-          {isLoading ? "Deleting..." : "Delete"} </button>
+          onClick={() => { processDeleteRequest(element._id) }} disabled={isDeleting.current}>
+          {isDeleting.current ? "Deleting..." : "Delete"} </button>
 
         <hr />
       </li>

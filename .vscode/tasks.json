@@ -21,21 +21,7 @@
             },
             // Use the standard MS compiler pattern to detect errors, warnings and infos
             "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "start-json-server",
-            "type": "shell",
-            "command": "start-json-server",
-            "args": [
-              "--watch",
-              "src/data/db.json",
-              "--port",
-              "8000"
-            ],
-            "group": {
-              "kind": "build",
-              "isDefault": true
-            }
-          }
+        }
+          
     ]
 }

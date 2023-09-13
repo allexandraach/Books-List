@@ -165,7 +165,7 @@ return (
 
       {books && books.map((element) => {
         return <Book key={element._id} element={element} handleDelete={handleDelete}
-          handleUpdate={handleUpdate} isLoading={isLoading}
+          handleUpdate={handleUpdate}
         />
       })}
 
