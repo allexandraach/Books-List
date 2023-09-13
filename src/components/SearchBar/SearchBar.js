@@ -27,6 +27,7 @@ export function SearchBar({ searchBooks, search, filterBooks, disableBtn }) {
         <label htmlFor="sortBooks">
           <select name="sort" value="default" onChange={(e) => { filterBooks(e.target.name, e.target.value) }} >
             <option value="default" disabled hidden> </option>
+            <option value="title"> asc order</option>
             <option value="author"> author</option>
             <option value="genre"> genre</option>
           </select>

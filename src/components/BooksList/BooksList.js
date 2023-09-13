@@ -15,7 +15,7 @@ export function BooksList() {
   // for displaying more than 10 books on the page
   const pageNumberRef = useRef(2);
 
-  // disable viewMoreBooks Btn if filter, sort or search is active
+  // disable viewMoreBooks Btn if search, filter or sort is active
   const [disableBtn, setDisableBtn] = useState(false);
 
   // for displaying 'Searching Books...' & 'Deleting...' to the user

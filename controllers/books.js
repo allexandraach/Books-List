@@ -80,6 +80,25 @@ const viewMoreBooks = async (req, res) => {
 
 }
 
+const getBook = async (req, res) => {
+
+    const bookId = req.params.id;
+
+    try {
+        const book = await Book.findById(bookId).select("_id title author genre favourite currentlyReading");
+
+        if (!book) {
+            return res.status(404).json({ error: 'Book not found' });
+        }
+        // If the book is found, return it as a JSON response
+        res.json(book);
+
+    } catch (error) {
+        console.error('Error fetching book by ID:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+}
+
 const putBook = (req, res) => {
 
     const bookId = req.params.id;
@@ -102,11 +121,12 @@ const deleteBook = (req, res) => {
 
 
 module.exports = {
-    getBooks, 
-    searchBooks, 
-    sortBooks, 
-    filterBooks, 
-    viewMoreBooks, 
-    putBook, 
+    getBooks,
+    searchBooks,
+    sortBooks,
+    filterBooks,
+    viewMoreBooks,
+    getBook,
+    putBook,
     deleteBook
 };
