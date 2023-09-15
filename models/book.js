@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 // custom validator function
 function checkDataValidity(data) {
 
-    const regexPattern = /[^A-Za-z\s.-]/;
-    return !regexPattern.test(data);
+    const regexPattern = /^[A-Za-z.-]+$/;
+    return regexPattern.test(data);
 
 }
 

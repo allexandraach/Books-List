@@ -6,7 +6,7 @@ export const usePost = () => {
 
   const navigate = useNavigate();
 
-  const postData = async (book) => {
+  const postData = async (book, setIsLoading) => {
 
     try {
       const response = await axios.post("http://localhost:8080/api/add", book);
@@ -16,6 +16,8 @@ export const usePost = () => {
       }
 
     } catch (error) {
+
+      setIsLoading(false);
 
       if (error.response.data.error === "MongoServerError") {
         alert(`Oops! The book ${book.title} already exists in your list.`);

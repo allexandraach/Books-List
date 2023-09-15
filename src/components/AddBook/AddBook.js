@@ -25,11 +25,11 @@ export const AddBook = () => {
     };
     console.log(book);
 
-    if (book.author === book.genre || book.title === book.genre) {
+    if (book.author === book.genre || book.title === book.genre || book.title === book.author) {
       alert('You entered the same data in two fields.');
     } else {
       setIsLoading(true);
-      postData(book);
+      postData(book, setIsLoading);
     }
   }
 
