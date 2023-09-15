@@ -5,9 +5,9 @@ import { usePost } from '../../hooks/usePost';
 
 export const AddBook = () => {
 
-  const title = useRef('');
-  const author = useRef('');
-  const genre = useRef('');
+  const titleRef = useRef('');
+  const authorRef = useRef('');
+  const genreRef = useRef('');
   const [favourite, setFavourite] = useState(false);
   const [currentlyReading, setCurrentlyReading] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -17,9 +17,9 @@ export const AddBook = () => {
 
     e.preventDefault();
     const book = {
-      title: title.current.value,
-      author: author.current.value,
-      genre: genre.current.value,
+      title: titleRef.current.value,
+      author: authorRef.current.value,
+      genre: genreRef.current.value,
       favourite,
       currentlyReading
     };
@@ -37,18 +37,18 @@ export const AddBook = () => {
     <fieldset>
       <legend>Input book details</legend>
 
-      <label htmlFor="bookTitle">
-        <input type="text" ref={title} name="title" id="bookTitle"
+      <label htmlFor="title">
+        <input type="text" ref={titleRef} name="title" id="title"
           placeholder="Enter book's title" required />
       </label>
 
-      <label htmlFor="authorName">
-        <input type="text" ref={author} name="author" id="authorName"
+      <label htmlFor="author">
+        <input type="text" ref={authorRef} name="author" id="author"
           placeholder="Enter author's name" required />
       </label>
 
-      <label htmlFor="bookGenre">
-        <input type="text" ref={genre} name="genre" id="bookGenre"
+      <label htmlFor="genre">
+        <input type="text" ref={genreRef} name="genre" id="genre"
           placeholder="Enter book's genre" required />
       </label>
 

@@ -3,10 +3,8 @@
 export function SearchBar({ searchBooks, search, filterBooks, disableBtn }) {
 
   return <form id="searchBarForm">
-
-    <input type="text" value={searchBooks} placeholder="Search books"
-      onChange={(e) => { search(e.target.value) }} />
-
+      <input type="text" value={searchBooks} id="searchBooks" placeholder="Search books"
+        onChange={(e) => { search(e.target.value) }} />
     <br />
 
     <div id="booksDropdownWrapper">
@@ -14,7 +12,8 @@ export function SearchBar({ searchBooks, search, filterBooks, disableBtn }) {
       <div>
         Filter by:
         <label htmlFor="filterBooks">
-          <select name="filter" value="default" onChange={(e) => { filterBooks(e.target.name, e.target.value) }} >
+          <select name="filter" value="default" id="filterBooks"
+            onChange={(e) => { filterBooks(e.target.name, e.target.value) }} >
             <option value="default" disabled hidden> </option>
             <option value="currentlyReading"> currently reading</option>
             <option value="favourite"> favourite</option>
@@ -25,7 +24,8 @@ export function SearchBar({ searchBooks, search, filterBooks, disableBtn }) {
       <div>
         Sort by:
         <label htmlFor="sortBooks">
-          <select name="sort" value="default" onChange={(e) => { filterBooks(e.target.name, e.target.value) }} >
+          <select name="sort" value="default" id="sortBooks"
+            onChange={(e) => { filterBooks(e.target.name, e.target.value) }} >
             <option value="default" disabled hidden> </option>
             <option value="title"> asc order</option>
             <option value="author"> author</option>
@@ -35,7 +35,7 @@ export function SearchBar({ searchBooks, search, filterBooks, disableBtn }) {
       </div>
 
       <div>
-        <button id="clearBtn" href="/" disabled={!disableBtn} >
+        <button id="clearBtn" to="/" disabled={!disableBtn} >
           Clear </button>
       </div>
 
